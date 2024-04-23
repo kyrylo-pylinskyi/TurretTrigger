@@ -7,9 +7,9 @@ public class Turret : MonoBehaviour
     [SerializeField] private Transform _triggerTransform;
     [SerializeField] private Transform _turretBodyTransform;
     [SerializeField] private float _rotationSpeed;
+    [SerializeField] private TurretCanon _turretCanon;
 
     private Coroutine _rotationCoroutine;
-    
 
     private void OnEnable()
     {
@@ -27,6 +27,7 @@ public class Turret : MonoBehaviour
         if (_rotationCoroutine != null)
             StopCoroutine(_rotationCoroutine);
         _rotationCoroutine = StartCoroutine(RotateToTarget(enemy.transform));
+        _turretCanon.MakeShot();
     }
 
     private IEnumerator RotateToTarget(Transform target)
